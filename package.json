@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "sandstone": "^0.13.6"
   },
