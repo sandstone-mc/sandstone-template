@@ -7,3 +7,6 @@ To use a template before 0.14.0, clone this repo and run `git checkout <branch>`
 
 ### 0.14.0-alpha.13 Templates
 - [Pack](https://github.com/sandstone-mc/sandstone-template/tree/pack-0.14.0-alpha.13) `pack-0.14.0-alpha.13`
+
+### 0.14.0-alpha.19 Templates
+- [Pack](https://github.com/sandstone-mc/sandstone-template/tree/pack-0.14.0-alpha.19) `pack-0.14.0-alpha.19`
