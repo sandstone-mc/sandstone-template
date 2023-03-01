@@ -22,11 +22,11 @@ jobs:
         run: |
           git worktree add gen generated
           rm -rf gen/*
-          mv ./.sandstone/output/* gen
+          mv ./.sandstone/* gen
           cd gen
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add -A ./datapack
+          git add -A ./output
           git diff-index --quiet HEAD || git commit -m 'Updated Pack files'
       - name: Push Changes
         uses: ad-m/github-push-action@master
