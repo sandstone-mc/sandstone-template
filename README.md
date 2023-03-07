@@ -8,5 +8,5 @@ To use a template, clone this repo, run `git checkout <branch>` in the folder, a
 ### 0.14.0-alpha.13 Templates
 - [Pack](https://github.com/sandstone-mc/sandstone-template/tree/pack-0.14.0-alpha.13) `pack-0.14.0-alpha.13`
 
-### 0.14.0-alpha.19 Templates
-- [Pack](https://github.com/sandstone-mc/sandstone-template/tree/pack-0.14.0-alpha.19) `pack-0.14.0-alpha.19`
+### 0.14.0-alpha.20 Templates
+- [Pack](https://github.com/sandstone-mc/sandstone-template/tree/pack-0.14.0-alpha.20) `pack-0.14.0-alpha.20`
