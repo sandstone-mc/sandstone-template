@@ -1,22 +1,26 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    // We target a minimum Node version of 12.9.0: https://stackoverflow.com/a/59787575
-    "target": "es2019",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
     "lib": [
-      "es2020"
+      "ESNext"
     ],
-    "strict": false,
-    "esModuleInterop": false,
+    "strict": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "outDir": "build"
+    "outDir": "lib",
+    "forceConsistentCasingInFileNames": true 
+  },
+  "ts-node": {
+    "esm": true
   },
   "include": [
+    "sandstone.config.ts",
     "src"
   ],
 }
