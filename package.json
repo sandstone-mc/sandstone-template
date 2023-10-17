@@ -4,19 +4,19 @@
   "description": "A pack created with Sandstone",
   "type": "module",
   "scripts": {
-    "watch": "sand watch",
-    "build": "sand build"
+    "watch": "NODE_OPTIONS='--loader ts-node/esm' sand watch",
+    "build": "NODE_OPTIONS='--loader ts-node/esm' sand build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "sandstone": "link:../sandstone",
-    "sandstone-cli": "link:../sandstone-cli"
-  },
   "devDependencies": {
-    "@types/node": "^18.14.0",
+    "@types/node": "^20.8.6",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "sandstone": "1.0.0-alpha.2",
+    "sandstone-cli": "^1.0.2"
   }
 }
