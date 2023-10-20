@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   sandstone:
-    specifier: 1.0.0-alpha.2
-    version: 1.0.0-alpha.2
+    specifier: 1.0.0-alpha.3
+    version: 1.0.0-alpha.3
   sandstone-cli:
-    specifier: ^1.0.4
-    version: 1.0.4(typescript@5.2.2)
+    specifier: ^1.0.6
+    version: 1.0.6(typescript@5.2.2)
 
 devDependencies:
   '@types/node':
@@ -83,21 +83,21 @@ packages:
       '@types/node': 20.8.6
     dev: false
 
-  /@types/fs-extra@11.0.2:
-    resolution: {integrity: sha512-c0hrgAOVYr21EX8J0jBMXGLMgJqVf/v6yxi0dLaJboW9aQPh16Id+z6w2Tx1hm+piJOLv8xPfVKZCLfjPw/IMQ==}
+  /@types/fs-extra@11.0.3:
+    resolution: {integrity: sha512-sF59BlXtUdzEAL1u0MSvuzWd7PdZvZEtnaVkzX5mjpdWTJ8brG0jUqve3jPCzSzvAKKMHTG8F8o/WMQLtleZdQ==}
     dependencies:
-      '@types/jsonfile': 6.1.2
+      '@types/jsonfile': 6.1.3
       '@types/node': 20.8.6
     dev: false
 
-  /@types/jsonfile@6.1.2:
-    resolution: {integrity: sha512-8t92P+oeW4d/CRQfJaSqEwXujrhH4OEeHRjGU3v1Q8mUS8GPF3yiX26sw4svv6faL2HfBtGTe2xWIoVgN3dy9w==}
+  /@types/jsonfile@6.1.3:
+    resolution: {integrity: sha512-/yqTk2SZ1wIezK0hiRZD7RuSf4B3whFxFamB1kGStv+8zlWScTMcHanzfc0XKWs5vA1TkHeckBlOyM8jxU8nHA==}
     dependencies:
       '@types/node': 20.8.6
     dev: false
 
-  /@types/lodash@4.14.199:
-    resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
+  /@types/lodash@4.14.200:
+    resolution: {integrity: sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==}
     dev: false
 
   /@types/node@20.8.6:
@@ -105,8 +105,14 @@ packages:
     dependencies:
       undici-types: 5.25.3
 
-  /@types/semver@7.5.3:
-    resolution: {integrity: sha512-OxepLK9EuNEIPxWNME+C6WwbRAOOI2o2BaQEGzz5Lu2e4Z5eDnEo+/aVEDMIXywoJitJ7xWd641wrGLZdtwRyw==}
+  /@types/node@20.8.7:
+    resolution: {integrity: sha512-21TKHHh3eUHIi2MloeptJWALuCu5H7HQTdTrWIFReA8ad+aggoX+lRes3ex7/FtpC+sVUpFMQ+QTfYr74mruiQ==}
+    dependencies:
+      undici-types: 5.25.3
+    dev: false
+
+  /@types/semver@7.5.4:
+    resolution: {integrity: sha512-MMzuxN3GdFwskAnb6fz0orFvhfqi752yjaXylr0Rp4oDg5H0Zn1IuyRhDVvYOwAXoJirx2xuS16I3WjxnAIHiQ==}
     dev: false
 
   /@typescript/analyze-trace@0.4.0:
@@ -1000,11 +1006,11 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
-  /sandstone-cli@1.0.4(typescript@5.2.2):
-    resolution: {integrity: sha512-TqdVhffMdLxgZlMS/oz2M6+xk1GVpoo0RXrh9urRe43xcDY72VJrhBFBeqMcXHMuUai2k3yIVoRT96Ae/pHjfg==}
+  /sandstone-cli@1.0.6(typescript@5.2.2):
+    resolution: {integrity: sha512-4EwTMHD1xVWu8iHCPBjqKfBnflGDzaG1svzzZg3cwOMIgmOvL6raxBwHn94pZh9/sR+TIZ6kLQYbAmywzQSuHQ==}
     hasBin: true
     dependencies:
-      '@types/node': 20.8.6
+      '@types/node': 20.8.7
       adm-zip: 0.5.10
       chalk: 5.3.0
       chalk-template: 1.1.0
@@ -1018,23 +1024,23 @@ packages:
       nanoid: 4.0.2
       pretty-error: 4.0.0
       semver: 7.5.4
-      ts-node: 10.9.1(@types/node@20.8.6)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.8.7)(typescript@5.2.2)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
       - typescript
     dev: false
 
-  /sandstone@1.0.0-alpha.2:
-    resolution: {integrity: sha512-mhPeu2+41kMw1deUfQNPSmrG3+bNb1q9mfP/HF3H3nsEEHsRc9vSjDZoOovecjcILmNIJitwK3wvutusbfwHig==}
+  /sandstone@1.0.0-alpha.3:
+    resolution: {integrity: sha512-oPoMWTFrVoOYmrVW9DCNFZDeJ6Nx/k2SYeTSUqpitVv5PIivLBpSgcM/Uu9Y7G2cV6qT53aaqfvlfOz3dMZQlA==}
     engines: {node: '>=12.22.3'}
     dependencies:
       '@sinclair/typebox': 0.25.24
       '@smithed-mc/data-types': 0.1.2
       '@types/adm-zip': 0.5.3
-      '@types/fs-extra': 11.0.2
-      '@types/lodash': 4.14.199
-      '@types/semver': 7.5.3
+      '@types/fs-extra': 11.0.3
+      '@types/lodash': 4.14.200
+      '@types/semver': 7.5.4
       '@typescript/analyze-trace': 0.4.0
       adm-zip: 0.5.10
       chalk: 4.1.2
@@ -1161,6 +1167,38 @@ packages:
       typescript: 5.2.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
+
+  /ts-node@10.9.1(@types/node@20.8.7)(typescript@5.2.2):
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.8.7
+      acorn: 8.10.0
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.2.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}

@@ -17,7 +17,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "sandstone": "1.0.0-alpha.2",
-    "sandstone-cli": "^1.0.4"
+    "sandstone": "1.0.0-alpha.3",
+    "sandstone-cli": "^1.0.6"
   }
 }
