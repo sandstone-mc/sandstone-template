@@ -1,0 +1,10 @@
+{
+	"extends": "../tsconfig",
+    "include": [
+        "src",
+        "./sandstone.config.ts"
+    ],
+    "compilerOptions": {
+        "noEmit": true,
+    }
+}

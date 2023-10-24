@@ -1,5 +1,5 @@
-import { sandstonePack } from 'sandstone'
+import * as display from './display.js'
 
-import './display.js'
-
-export default sandstonePack
+export const {
+    displayMessage
+} = display
