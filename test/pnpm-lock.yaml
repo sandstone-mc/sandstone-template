@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   sandstone-build:
-    specifier: ^1.0.3
-    version: 1.0.3(typescript@5.2.2)
+    specifier: ^1.0.4
+    version: 1.0.4(typescript@5.2.2)
   sandstone-template:
     specifier: link:..
     version: link:..
@@ -360,8 +360,8 @@ packages:
       glob: 7.2.3
     dev: false
 
-  /sandstone-build@1.0.3(typescript@5.2.2):
-    resolution: {integrity: sha512-LCoubVgFcLzZQf/0/6daYhmswiwjrihu5tuAeI3f2SzkYnc9Bu7WJaSE+/TC0TA01Mzfi4Q3oMWNLvzIfkT5AQ==}
+  /sandstone-build@1.0.4(typescript@5.2.2):
+    resolution: {integrity: sha512-ihaWk3k0WfrnsV1uVvrSIM4E460ZFNcq2CJ4+4Pl/KPTISmPkndrHpGosI2/vqWnsKyQPNqj9BeDL6Cgl1S7hg==}
     dependencies:
       '@types/node': 20.8.8
       adm-zip: 0.5.10
