@@ -13,11 +13,11 @@
   "devDependencies": {
     "@types/node": "^20.8.6",
     "sandstone-build": "^1.0.5",
-    "sandstone-cli": "^1.1.6",
+    "sandstone-cli": "^1.1.7",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "sandstone": "1.0.0-alpha.4"
+    "sandstone": "1.0.0-alpha.5"
   }
 }

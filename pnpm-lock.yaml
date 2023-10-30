@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   sandstone:
-    specifier: 1.0.0-alpha.4
-    version: 1.0.0-alpha.4
+    specifier: 1.0.0-alpha.5
+    version: 1.0.0-alpha.5
 
 devDependencies:
   '@types/node':
@@ -17,8 +17,8 @@ devDependencies:
     specifier: ^1.0.5
     version: 1.0.5(typescript@5.2.2)
   sandstone-cli:
-    specifier: ^1.1.6
-    version: 1.1.6
+    specifier: ^1.1.7
+    version: 1.1.7
   ts-node:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@20.8.6)(typescript@5.2.2)
@@ -110,12 +110,6 @@ packages:
 
   /@types/node@20.8.6:
     resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
-    dependencies:
-      undici-types: 5.25.3
-    dev: true
-
-  /@types/node@20.8.8:
-    resolution: {integrity: sha512-YRsdVxq6OaLfmR9Hy816IMp33xOBjfyOgUd77ehqg96CFywxAPbDbXvAsuN2KVg2HOT8Eh6uAfU+l4WffwPVrQ==}
     dependencies:
       undici-types: 5.25.3
     dev: true
@@ -906,8 +900,8 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
-  /punycode@2.3.0:
-    resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
+  /punycode@2.3.1:
+    resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
     dev: false
 
@@ -1011,11 +1005,11 @@ packages:
       - typescript
     dev: true
 
-  /sandstone-cli@1.1.6:
-    resolution: {integrity: sha512-F3dkHJjFbzQcdYiwlMNb69IqFeSEjUiOd6D0IbmAfSmfhqziCvUivyAXNhQ7CVig9z6qyNleBu3Uh+q+U+nHsA==}
+  /sandstone-cli@1.1.7:
+    resolution: {integrity: sha512-wDIx7y3XKZAqNY3SkVN5PvUZVIb16mmG4U/RCkyWoXmgW/1dJQTLWoKPb7nquC1uQxU4sjh4clOO/leoMNe0JA==}
     hasBin: true
     dependencies:
-      '@types/node': 20.8.8
+      '@types/node': 20.8.9
       chalk: 5.3.0
       chalk-template: 1.1.0
       chokidar: 3.5.3
@@ -1028,8 +1022,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /sandstone@1.0.0-alpha.4:
-    resolution: {integrity: sha512-W4Za/rO8+sYcI4nP1as6Wey1M3W/yrtwqixiD35Why9a2JfHTTJER0HpTTt7cr1IUSn2G5GgFcXovLUMvUkrNg==}
+  /sandstone@1.0.0-alpha.5:
+    resolution: {integrity: sha512-pOOBDKMOaPlSdbIDr11eZaA/xii/R+FiTU/niB7MGlMslKbyYWOWTb7RFBa6lr8XlRabwkGns6Q2vbC6XgEvCw==}
     engines: {node: '>=12.22.3'}
     dependencies:
       '@sinclair/typebox': 0.25.24
@@ -1219,7 +1213,7 @@ packages:
   /uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
-      punycode: 2.3.0
+      punycode: 2.3.1
     dev: false
 
   /util-deprecate@1.0.2:
