@@ -18,6 +18,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "sandstone": "1.0.0-alpha.5"
+    "sandstone": "1.0.0-alpha.6"
   }
 }
