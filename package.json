@@ -4,6 +4,7 @@
   "description": "A library created with Sandstone",
   "type": "module",
   "exports": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "rimraf test/resources/* && copyfiles resources/**/*.* test && cd test && sand build",
     "build": "tsc && pnpm test",
@@ -17,10 +18,10 @@
     "copyfiles": "^2.4.1",
     "nodemon": "^3.0.1",
     "rimraf": "^5.0.5",
-    "sandstone-cli": "^1.1.5",
+    "sandstone-cli": "^1.1.10",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "sandstone": "1.0.0-alpha.4"
+    "sandstone": "1.0.0-alpha.6"
   }
 }
