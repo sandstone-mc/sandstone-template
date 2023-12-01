@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   sandstone:
-    specifier: 1.0.0-alpha.6
-    version: 1.0.0-alpha.6
+    specifier: 1.0.0-beta.0
+    version: 1.0.0-beta.0
 
 devDependencies:
   '@types/node':
@@ -23,8 +23,8 @@ devDependencies:
     specifier: ^5.0.5
     version: 5.0.5
   sandstone-cli:
-    specifier: ^1.1.10
-    version: 1.1.10
+    specifier: ^1.1.11
+    version: 1.1.11
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -99,6 +99,13 @@ packages:
     resolution: {integrity: sha512-D0WfRmU9TQ8I9PFx9Yc+EBHw+vSpIub4IDvQivcp26PtPrdMGAq5SDcpXEo/epqa/DXotVpekHiLNTg3iaKXBQ==}
     dependencies:
       undici-types: 5.26.5
+    dev: false
+
+  /@types/node@20.10.2:
+    resolution: {integrity: sha512-37MXfxkb0vuIlRKHNxwCkb60PNBpR94u4efQuN4JgIAm66zfCDXGSAFCef9XUWFovX2R1ok6Z7MHhtdVXXkkIw==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
 
   /@types/node@20.8.6:
     resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
@@ -1044,11 +1051,11 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sandstone-cli@1.1.10:
-    resolution: {integrity: sha512-GX43n6OXpwtgGJc7/31DzEBQwmAMmSJEbcE9hziCzmnmZECCQPTbctkWnKlpDKrZpfBvCBXmUYnahcrH2hmYDQ==}
+  /sandstone-cli@1.1.11:
+    resolution: {integrity: sha512-ZBuH6Y86Ibc19x1RCrigEGkENls7SxzWDDNhcwzGlzcY1fI99HxUPGyLcmzSAkNt2z0Gbq0OrcK+uBKJH73XHA==}
     hasBin: true
     dependencies:
-      '@types/node': 20.10.0
+      '@types/node': 20.10.2
       chalk: 5.3.0
       chalk-template: 1.1.0
       chokidar: 3.5.3
@@ -1061,8 +1068,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /sandstone@1.0.0-alpha.6:
-    resolution: {integrity: sha512-6OpSGeHyNsMHvD27wEa9s5MwPIsEBcgTpl+3STZi5V/kK+JhGei2/15m2evaMXJuU0flb8kffFlLNjvy+AZCBA==}
+  /sandstone@1.0.0-beta.0:
+    resolution: {integrity: sha512-XZgvJ0ejz+MP172ImEDRgS++L8NNAt5TGmF9pOJuWB42gDdWAohCnSa5WedSj4CZo+sR18uWB8Eb+yuKGpCipw==}
     engines: {node: '>=12.22.3'}
     dependencies:
       '@sinclair/typebox': 0.31.28

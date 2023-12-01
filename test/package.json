@@ -1,7 +1,9 @@
 {
   "type": "module",
   "dependencies": {
-    "sandstone-build": "^1.0.7",
+    "sandstone": "1.0.0-beta.0",
+    "sandstone-build": "^1.0.8",
+    "sandstone-cli": "^1.1.11",
     "sandstone-template": "link:..",
     "ts-node": "^10.9.1"
   }
