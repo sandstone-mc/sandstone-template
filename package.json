@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.8.6",
-    "sandstone-build": "^1.0.8",
+    "sandstone-build": "^1.1.0",
     "sandstone-cli": "^1.1.11",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"

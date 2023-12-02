@@ -14,8 +14,8 @@ devDependencies:
     specifier: ^20.8.6
     version: 20.9.1
   sandstone-build:
-    specifier: ^1.0.8
-    version: 1.0.8(typescript@5.2.2)
+    specifier: ^1.1.0
+    version: 1.1.0(typescript@5.2.2)
   sandstone-cli:
     specifier: ^1.1.11
     version: 1.1.11
@@ -989,8 +989,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sandstone-build@1.0.8(typescript@5.2.2):
-    resolution: {integrity: sha512-1AwbzWb4VTwSyA/QCWuxkiWOSMDeu39a8Ld9dgIqywbiSpJBApUydqTH+aUH47TdtUwVH3CPsgoD5kOmE+CQdg==}
+  /sandstone-build@1.1.0(typescript@5.2.2):
+    resolution: {integrity: sha512-O5YhLd7pzksEAQiKSZy6KDgWKlJYWmkPoX2BJmW8roq3a1ft1AXlptjWq9w/bxndZ6ON5rydWMEXSdlJSIg21Q==}
     dependencies:
       '@types/node': 20.10.2
       adm-zip: 0.5.10
