@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "sandstone": "file:../sandstone"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "sandstone-cli": "file:../sandstone-cli",
+    "typescript": "^5.9.3"
+  }
+}

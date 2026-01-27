@@ -1,5 +1,4 @@
-import { sandstonePack } from 'sandstone'
-
+// Import your pack code files here
 import './display.ts'
 
-export default sandstonePack
+// The CLI handles pack creation - just import your files
