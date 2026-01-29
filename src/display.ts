@@ -3,9 +3,8 @@
  * You can delete it!
  */
 
-import { data, give, MCFunction, Selector, tellraw } from 'sandstone'
+import { MCFunction, tellraw } from 'sandstone'
 
-// TODO: This function isn't ending up in the result :concern:
 MCFunction('display_message', () => {
   tellraw('@a', [
     '\n========= Congratulations! =========\n\n',
@@ -14,10 +13,6 @@ MCFunction('display_message', () => {
     ' and start creating your datapack!\n',
     '==============', { text: '🏹', color: '#D2691E' }, { text: '⚔', color: '#45ACA5' }, { text: '⛏', color: '#FFD700' }, '==============',
   ])
-
-  give('@s', 'acacia_boat')
-
-  data.modify.entity(Selector('@a'), '{}')
 }, {
   runOnLoad: true
 })
