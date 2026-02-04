@@ -5,8 +5,8 @@
   "type": "module",
   "module": "src/index.ts",
   "scripts": {
-    "watch": "sand watch",
-    "build": "sand build"
+    "dev:watch": "sand watch",
+    "dev:build": "sand build"
   },
   "keywords": [],
   "author": "",
