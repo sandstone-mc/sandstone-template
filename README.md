@@ -4,19 +4,15 @@
 Generated pack is in `generated` branch.
 
 To build the packs, run:
-```ts
-npm run build
-// or
-yarn build
+```bash
+bun dev:build
 // or
 sand build
 ```
 
 To automatically rebuild the packs on each change, run:
-```ts
-npm run watch
-// or
-yarn watch
+```bash
+bun dev:watch
 // or
 sand watch
 ```

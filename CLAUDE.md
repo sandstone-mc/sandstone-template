@@ -5,8 +5,8 @@ Starter template for creating Minecraft datapacks and resource packs with [Sands
 ## Commands
 
 ```bash
-bun run build    # Build the pack (outputs to .sandstone/output/)
-bun run watch    # Watch mode - rebuilds on file changes
+bun dev:build    # Build the pack (outputs to `.sandstone/output/`)
+bun dev:watch    # Watch mode - rebuilds on file changes, run this in a background shell and read from `.sandstone/watch.log` rather than your own background shell log
 ```
 
 ## Project Structure
@@ -120,6 +120,7 @@ Create datapack resources with type-safe builders:
 - `Predicate('name', {...})` - Predicates
 - `Recipe('name', {...})` - Recipes
 - `Tag('type', 'name', [...])` - Tags (blocks, items, functions, etc.)
+- Many more
 
 ### Configuration
 [docs/features/config.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/config.md)
