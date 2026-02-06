@@ -1,5 +1,1 @@
-import { sandstonePack } from 'sandstone'
-
-import './test-display.js'
-
-export default sandstonePack
+import './test-display.ts'

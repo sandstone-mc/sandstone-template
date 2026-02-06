@@ -6,22 +6,18 @@
   "exports": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "test": "rimraf test/resources/* && copyfiles resources/**/*.* test && cd test && sand build",
-    "build": "tsc && pnpm test",
-    "watch": "nodemon --exec pnpm build"
+    "dev:compile": "bun build --outfile=lib/index.js --packages=external src/index.ts",
+    "dev:build": "bun dev:compile && tsc",
+    "dev:watch": "",
+    "prepublishOnly": "bun dev:build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.8.6",
-    "copyfiles": "^2.4.1",
-    "nodemon": "^3.0.1",
-    "rimraf": "^5.0.5",
-    "sandstone-cli": "^1.1.11",
-    "typescript": "^5.2.2"
+    "sandstone-cli": "link:sandstone-cli"
   },
   "dependencies": {
-    "sandstone": "1.0.0-beta.0"
+    "sandstone": "link:sandstone"
   }
 }

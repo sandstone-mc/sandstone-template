@@ -1,0 +1,20 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "sandstone-template",
+      "dependencies": {
+        "sandstone": "link:sandstone",
+      },
+      "devDependencies": {
+        "sandstone-cli": "link:sandstone-cli",
+      },
+    },
+  },
+  "packages": {
+    "sandstone": ["sandstone@link:sandstone", {}],
+
+    "sandstone-cli": ["sandstone-cli@link:sandstone-cli", { "bin": { "sand": "./lib/index.js", "create-sandstone": "./lib/create.js" } }],
+  }
+}
