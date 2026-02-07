@@ -13,9 +13,12 @@
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "outDir": "lib",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "@types/bun"
+    ]
   },
   "include": [
-    "src"
+    "src",
   ],
 }

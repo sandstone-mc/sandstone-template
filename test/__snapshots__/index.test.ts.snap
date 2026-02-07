@@ -1,0 +1,85 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`main 1`] = `
+"  ____                  _     _                   
+ / ___|  __ _ _ __   __| |___| |_ ___  _ __   ___ 
+ \\___ \\ / _\` | '_ \\ / _\` / __| __/ _ \\| '_ \\ / _ \\
+  ___) | (_| | | | | (_| \\__ \\ || (_) | | | |  __/
+ |____/ \\__,_|_| |_|\\__,_|___/\\__\\___/|_| |_|\\___|
+                                                  
+Compiling source...
+
+Path: datapack\\data\\load\\tags\\function\\pre_load.json
+
+{
+  "replace": false,
+  "values": []
+}
+Path: datapack\\data\\load\\tags\\function\\load.json
+
+{
+  "replace": false,
+  "values": [
+    "default:__init__",
+    "template:display_message"
+  ]
+}
+Path: datapack\\data\\load\\tags\\function\\post_load.json
+
+{
+  "replace": false,
+  "values": []
+}
+Path: datapack\\data\\load\\function\\_private\\init.mcfunction
+
+# Reset scoreboards so packs can set values accurate for current load.
+scoreboard players reset * load.status
+Path: datapack\\data\\load\\tags\\function\\_private\\init.json
+
+{
+  "replace": false,
+  "values": [
+    "load:_private/init"
+  ]
+}
+Path: datapack\\data\\load\\tags\\function\\_private\\load.json
+
+{
+  "replace": false,
+  "values": [
+    "#load:_private/init",
+    {
+      "id": "#load:pre_load",
+      "required": false
+    },
+    {
+      "id": "#load:load",
+      "required": false
+    },
+    {
+      "id": "#load:post_load",
+      "required": false
+    }
+  ]
+}
+Path: datapack\\data\\minecraft\\tags\\function\\load.json
+
+{
+  "replace": false,
+  "values": [
+    "#load:_private/load"
+  ]
+}
+Path: datapack\\data\\default\\function\\__init__.mcfunction
+
+scoreboard objectives add load.status dummy
+scoreboard objectives add __sandstone dummy [{"text":"Sandstone","color":"gold"}," internals"]
+scoreboard players set default load.status 1
+Path: datapack\\data\\template\\function\\display_message.mcfunction
+
+tellraw @a ["\\n========= Congratulations! =========\\n\\n",{"text":" Sandstone template library","color":"gold","bold":true}," is ",{"text":"successfully installed.\\n\\n","color":"green"},"==============",{"text":"🏹","color":"#D2691E"},{"text":"⚔","color":"#45ACA5"},{"text":"⛏","color":"#FFD700"},"=============="]
+
+Pack(s) compiled! (1 functions, 0 other resources) Exported to client. View output in ./.sandstone/output/
+
+"
+`;

@@ -5,9 +5,15 @@
   "type": "module",
   "exports": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "workspaces": [
+    "./",
+    "test"
+  ],
   "scripts": {
+    "setup": "bun i && bun link && bun i",
+    "dev:test-build": "cd test && bun dev:test-build",
     "dev:compile": "bun build --outfile=lib/index.js --packages=external src/index.ts",
-    "dev:build": "bun dev:compile && tsc",
+    "dev:build": "bun dev:compile && bun tsc",
     "dev:watch": "",
     "prepublishOnly": "bun dev:build"
   },
@@ -18,6 +24,7 @@
     "sandstone-cli": "link:sandstone-cli"
   },
   "dependencies": {
+    "@types/bun": "^1.3.8",
     "sandstone": "link:sandstone"
   }
 }
