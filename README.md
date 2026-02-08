@@ -12,9 +12,7 @@ To test the library, run:
 bun test
 ```
 
-To automatically rebuild & test the library on each change, run:
+To automatically rebuild the library & test project on each change, run:
 ```bash
 bun dev:watch
 ```
-
-TODO: figure out a non-scuffed watcher

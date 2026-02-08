@@ -14,7 +14,7 @@
     "dev:test-build": "cd test && bun dev:test-build",
     "dev:compile": "bun build --outfile=lib/index.js --packages=external src/index.ts",
     "dev:build": "bun dev:compile && bun tsc",
-    "dev:watch": "",
+    "dev:watch": "sand watch --library",
     "prepublishOnly": "bun dev:build"
   },
   "keywords": [],
