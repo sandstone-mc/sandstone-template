@@ -72,6 +72,91 @@ execute.as('@a').at('@s').run(() => {
 - Async functions with `sleep()`: `MCFunction('name', async () => { await sleep('1s') })`
 - Inline functions (JS functions) don't create files, commands are inlined
 
+**IMPORTANT: Synchronous Execution**
+Everything inside an MCFunction (including all Flow control like `_.if`, `_.while`, `_.forScore`) executes **synchronously within a single game tick**. Minecraft processes all commands instantly - there is no "waiting" between commands. The only way to delay execution across ticks is with `sleep()` in an async MCFunction:
+```typescript
+MCFunction('delayed', async () => {
+  say('This runs immediately')
+  await sleep('1s')  // Waits 20 ticks (1 second)
+  say('This runs 1 second later')
+})
+```
+
+**Async Context**: By default, scheduled functions lose entity (`@s`) and position context because `schedule` runs from server context. Use `asyncContext: true` to preserve context:
+```typescript
+// WITHOUT asyncContext - @s and position are LOST after sleep
+MCFunction('loses_context', async () => {
+  execute.as('@p').at('@s').run(async () => {
+    say('Player is @s here')
+    await sleep('1s')
+    say('Now @s is GONE - runs as server!')
+  })
+})
+
+// WITH asyncContext - context is preserved
+MCFunction('keeps_context', async () => {
+  execute.as('@p').at('@s').run(async () => {
+    say('Player is @s here')
+    await sleep('1s')
+    say('Still the same @s and position!')
+  })
+}, { asyncContext: true })
+```
+Under the hood, `asyncContext` works by:
+1. Adding a **Label tag** to `@s` to mark entities waiting for this sleep
+2. Storing **gametime + delay** as a score on `@s`
+3. When scheduled time arrives, selecting all entities with that tag whose timer matches current gametime
+4. Running the continuation `as` and `at` each matched entity
+
+This elegantly handles multiple entities sleeping simultaneously - each wakes up independently when their timer expires.
+
+### Macros & MCFunction Parameters
+[docs/features/macros.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/macros.md)
+
+Macros allow runtime value substitution in commands using `$(variable)` syntax. Sandstone provides first-class macro support through MCFunction parameters and environment variables.
+
+```typescript
+const $ = Macro  // Common alias
+
+const name = Data('storage', 'test', 'Name')
+
+// [envVars], callback receives (_loop, ...params)
+const test = MCFunction('test', [name], (_loop, count: Score) => {
+  // Use variables directly with Macro commands - Sandstone handles the $(name) conversion
+  $.give(name, 'minecraft:diamond', count)
+})
+
+MCFunction('foo', () => {
+  const player = DataVariable('MulverineX')
+  const count = Objective.create('testing')('@s')
+
+  // Call with values - first arg overrides env var, rest are params
+  test(player, count)
+})
+```
+
+#### Environment Variables vs Parameters
+- **Environment variables**: Array as second MCFunction argument `[name]` - can be overridden at call time
+- **Parameters**: Declared in callback after `_loop`: `(_loop, count: Score)` - passed at call time
+- **Usage**: Reference the actual variables in `Macro` commands, not string placeholders
+
+#### Macro Template Literals
+Use `Macro` tagged template for dynamic paths:
+```typescript
+const thing = Data('storage', 'test', 'Thing')
+const thingMap = Data('storage', 'test', 'Things')
+
+const test = MCFunction('get_thing', (_loop, index: Score) => {
+  // Dynamic array access at runtime
+  $.data.storage.modify(thing).set.from.storage(thingMap.currentTarget, $`Things[${index}]`)
+})
+```
+
+#### Important Limitations
+- MCFunctions with macro variables **must** be called at compile-time to register macro names
+- Variables used as parameters cannot be used normally within the same function; declare separately if needed
+- Nesting not available in parameters; all must be at root level (spread operators work)
+
 ### Selectors
 [docs/features/selectors.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/selectors.md)
 
@@ -94,6 +179,61 @@ myKills.set(0)
 myKills.greaterThan(10)  // Returns condition for use in _.if()
 ```
 
+### Data & Data Points
+[docs/features/variables/data.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/variables/data.md)
+
+NBT data can be stored in three places: **storage** (virtual), **entities**, or **blocks**. Use `Data` to create references:
+
+```typescript
+import { Data, DataVariable } from 'sandstone'
+
+// Create data references (no commands emitted yet)
+const pig = Data('entity', '@e[type=pig,limit=1]')
+const chest = Data('block', '~ ~ ~')
+const myStorage = Data('storage', 'mypack:data')
+
+// Select a path to get a DataPoint
+const health = pig.select('Health')
+const items = chest.select('Items')
+const savedUUID = myStorage.select('player_uuid')
+
+// Shorthand: call Data with path directly
+const tags = Data('entity', '@s', 'Tags')
+```
+
+**Operations** - All return the data point for chaining:
+```typescript
+health.set(20)                        // Set value
+health.set(otherDataPoint)            // Copy from another data point
+health.set(score)                     // Set from score (converted to NBT)
+tags.append('marked')                 // Add to end of list
+tags.prepend('priority')              // Add to start of list
+items.insert({id: 'stone'}, 2)        // Insert at index
+item.merge({Unbreakable: NBT.byte(1)}) // Merge NBT without overwriting other fields
+tags.remove()                         // Remove this data point
+```
+
+**DataVariable** - Anonymous storage for intermediate values:
+```typescript
+const temp = DataVariable()           // Auto-generated storage path
+const named = DataVariable(undefined, 'myVar')  // Named for debugging
+const initialized = DataVariable({foo: 'bar'})  // With initial value
+const fromScore = DataVariable(myScore)         // Score converted to NBT
+```
+
+**getTempStorage** - Shared temporary storage (cleared between uses):
+```typescript
+const { getTempStorage } = pack
+const temp = getTempStorage('uuid')   // Returns __sandstone:temp.uuid
+temp.set(someData)                    // Use for intermediate operations
+```
+
+**Comparison in conditions**:
+```typescript
+_.if(health.equals(20), () => { ... })
+_.if(tags.equals(['marked']), () => { ... })
+```
+
 ### Flow Control
 [docs/features/flow](https://github.com/sandstone-mc/sandstone-documentation/tree/master/docs/features/flow)
 
@@ -110,6 +250,84 @@ _.if(myKills.greaterThan(10), () => {
 - Conditions: score comparisons, `_.data.entity()`, `_.data.block()`, `_.block()`
 - Loops: `_.forScore()`, `_.while()`, `_.doWhile()`
 - Switch: `_.switch(score, [{case: 0, body: () => {...}}])`
+
+### Coordinates
+[docs/features/variables/coordinates.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/variables/coordinates.md)
+
+Commands that accept position arguments require coordinates to be strings, not raw numbers. Use coordinate helper functions:
+
+```typescript
+import { absolute, relative, local, setblock } from 'sandstone'
+
+// Absolute coordinates (exact world position)
+setblock(absolute(0, 64, 0), 'minecraft:stone')
+// Shorthand: abs
+import { abs } from 'sandstone'
+setblock(abs(0, 64, 0), 'minecraft:stone')
+
+// Relative coordinates (offset from executor position)
+setblock(relative(0, -1, 0), 'minecraft:stone')  // One block below executor
+setblock(relative(0, 0, 0), 'minecraft:stone')    // At executor position
+// Shorthand: rel
+import { rel } from 'sandstone'
+setblock(rel(0, -1, 0), 'minecraft:stone')
+
+// Local coordinates (relative to executor's rotation)
+setblock(local(0, 0, 1), 'minecraft:stone')  // One block in front
+// Shorthand: loc
+import { loc } from 'sandstone'
+setblock(loc(0, 0, 1), 'minecraft:stone')
+
+// Mix absolute and relative
+import { VectorClass } from 'sandstone'
+const mixedPos = new VectorClass(['0', '~', '~5'])  // x=0 (absolute), y=~ (relative), z=~5 (relative)
+
+// String arrays also work
+setblock(['0', '64', '0'], 'minecraft:stone')
+
+// WRONG: Do NOT pass raw number arrays
+setblock([0, 64, 0], 'minecraft:stone')  // ❌ Type error - coordinates must be strings!
+```
+
+**Key Points:**
+- Always use `abs()`, `rel()`, or `loc()` to convert numbers to coordinate strings
+- String arrays like `['0', '64', '0']` work but are less readable
+- Raw number arrays `[0, 64, 0]` will cause type errors and build failures
+- These helpers return `VectorClass` instances that convert to space-separated strings (e.g., `"0 64 0"`)
+
+### NBT Values
+
+When working with NBT data (item components, entity data, block entity data), use `NBT` wrappers for numeric types:
+
+```typescript
+import { NBT, ItemPredicate } from 'sandstone'
+
+// ✓ Correct - numbers need NBT wrappers
+ItemPredicate('minecraft:diamond_sword').exact('minecraft:damage', NBT.int(0))
+ItemPredicate('*').exact('minecraft:max_stack_size', NBT.int(64))
+
+// ✗ Wrong - raw numbers cause type errors
+ItemPredicate('minecraft:diamond_sword').exact('minecraft:damage', 0)  // Type error!
+
+// Strings don't need wrapping
+ItemPredicate('*').match('minecraft:custom_data', {
+  player_name: 'Steve',  // ✓ String is fine as-is
+  player_id: NBT.int(123)  // ✓ Number needs NBT.int()
+})
+
+// Booleans don't need wrapping
+ItemPredicate('*').exact('minecraft:hide_tooltip', {})  // ✓ Empty object for boolean component
+```
+
+**NBT Wrapper Rules:**
+- **Integers**: Use `NBT.int(value)` for whole numbers (damage, counts, IDs)
+- **Floats**: Use `NBT.float(value)` for decimal numbers with less precision
+- **Doubles**: Raw numbers work for doubles (no wrapper needed)
+- **Strings**: No wrapper needed - use plain strings
+- **Booleans**: Use `true` or `false` directly - do NOT use `NBT.byte()`
+
+**Why the wrappers?**
+Minecraft's NBT (Named Binary Tag) format distinguishes between different numeric types (byte, short, int, long, float, double). The wrappers ensure your values have the correct NBT type tag.
 
 ### Resources
 [docs/features/resources](https://github.com/sandstone-mc/sandstone-documentation/tree/master/docs/features/resources)
