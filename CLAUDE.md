@@ -19,9 +19,28 @@ sandstone.config.ts       # Pack configuration (name, namespace, formats)
 .sandstone/output/        # Generated packs (created on build)
 ├── datapack/             # Generated datapack
 │   ├── pack.mcmeta
-│   └── data/<namespace>/function/*.mcfunction
+│   └── data/
+│       ├── <namespace>/  # Your namespace (default: "default", configured in sandstone.config.ts)
+│       │   ├── function/*.mcfunction    # Generated MCFunctions
+│       │   ├── advancement/*.json       # Advancements
+│       │   ├── loot_table/*.json        # Loot tables
+│       │   ├── recipe/*.json            # Recipes
+│       │   ├── predicate/*.json         # Predicates
+│       │   └── tags/<type>/*.json       # Tags (block, item, function, etc.)
+│       ├── load/function/_private/      # Lantern Load internals
+│       └── minecraft/tags/function/     # Minecraft function tags (load.json, tick.json)
 └── resourcepack/         # Generated resource pack (if used)
+    ├── pack.mcmeta
+    └── assets/<namespace>/
+        ├── models/
+        ├── textures/
+        └── ...
 ```
+
+**Finding generated files:**
+- MCFunctions: `.sandstone/output/datapack/data/<namespace>/function/<name>.mcfunction`
+- The namespace is set in `sandstone.config.ts` (defaults to "default")
+- Nested function names like `MCFunction('foo/bar', ...)` create `foo/bar.mcfunction`
 
 The `datapack/` folder can be copied directly to `.minecraft/saves/<world>/datapacks/` or linked via config.
 
