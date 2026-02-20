@@ -135,27 +135,27 @@ This elegantly handles multiple entities sleeping simultaneously - each wakes up
 Macros allow runtime value substitution in commands using `$(variable)` syntax. Sandstone provides first-class macro support through MCFunction parameters and environment variables.
 
 ```typescript
-const $ = Macro  // Common alias
+const $ = Macro // common alias
 
 const name = Data('storage', 'test', 'Name')
 
 // [envVars], callback receives (_loop, ...params)
-const test = MCFunction('test', [name], (_loop, count: Score) => {
+const test = MCFunction('test', [name], (_loop: typeof test, count: Score) => {
   // Use variables directly with Macro commands - Sandstone handles the $(name) conversion
-  $.give(name, 'minecraft:diamond', count)
+  $.give(name, 'minecraft:diamond', undefined, count)
 })
 
 MCFunction('foo', () => {
-  const player = DataVariable('MulverineX')
+  name.set('MulverineX')
   const count = Objective.create('testing')('@s')
 
-  // Call with values - first arg overrides env var, rest are params
-  test(player, count)
+  // Call with score param - environment  cannot be overriden
+  test(count)
 })
 ```
 
 #### Environment Variables vs Parameters
-- **Environment variables**: Array as second MCFunction argument `[name]` - can be overridden at call time
+- **Environment variables**: Array as second MCFunction argument `[name]` - cannot be overridden at call time
 - **Parameters**: Declared in callback after `_loop`: `(_loop, count: Score)` - passed at call time
 - **Usage**: Reference the actual variables in `Macro` commands, not string placeholders
 
