@@ -142,7 +142,7 @@ const name = Data('storage', 'test', 'Name')
 // [envVars], callback receives (_loop, ...params)
 const test = MCFunction('test', [name], (_loop: typeof test, count: Score) => {
   // Use variables directly with Macro commands - Sandstone handles the $(name) conversion
-  $.give(name, 'minecraft:diamond', undefined, count)
+  $.give(name, 'minecraft:diamond', {}, count)
 })
 
 MCFunction('foo', () => {
