@@ -88,7 +88,7 @@ execute.as('@a').at('@s').run(() => {
 - `MCFunction('name', () => {...}, { runOnLoad: true })` - Runs on datapack load
 - `MCFunction('name', () => {...}, { runOnTick: true })` - Runs every tick
 - `{ lazy: true }` - Only creates file if called from another function
-- Async functions with `sleep()`: `MCFunction('name', async () => { await sleep('1s') })`
+- Async functions with `sleep()`: `MCFunction('name', async () => { sleep('1s') })`
 - Inline functions (JS functions) don't create files, commands are inlined
 
 **IMPORTANT: Synchronous Execution**
@@ -96,7 +96,7 @@ Everything inside an MCFunction (including all Flow control like `_.if`, `_.whil
 ```typescript
 MCFunction('delayed', async () => {
   say('This runs immediately')
-  await sleep('1s')  // Waits 20 ticks (1 second)
+  sleep('1s')  // Waits 20 ticks (1 second)
   say('This runs 1 second later')
 })
 ```
@@ -107,7 +107,7 @@ MCFunction('delayed', async () => {
 MCFunction('loses_context', async () => {
   execute.as('@p').at('@s').run(async () => {
     say('Player is @s here')
-    await sleep('1s')
+    sleep('1s')
     say('Now @s is GONE - runs as server!')
   })
 })
@@ -116,7 +116,7 @@ MCFunction('loses_context', async () => {
 MCFunction('keeps_context', async () => {
   execute.as('@p').at('@s').run(async () => {
     say('Player is @s here')
-    await sleep('1s')
+    sleep('1s')
     say('Still the same @s and position!')
   })
 }, { asyncContext: true })
