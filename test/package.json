@@ -7,8 +7,8 @@
     "dev:test-build": "sand build --dry --verbose"
   },
   "dependencies": {
-    "sandstone": "^1.0.0-beta.3",
-    "sandstone-cli": "^2.3.2",
+    "sandstone": "1.0.0-beta.3",
+    "sandstone-cli": "2.3.2",
     "sandstone-template": "link:sandstone-template"
   },
   "devDependencies": {

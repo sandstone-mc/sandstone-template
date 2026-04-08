@@ -6,17 +6,17 @@
       "name": "sandstone-template",
       "dependencies": {
         "@types/bun": "^1.3.8",
-        "sandstone": "^1.0.0-beta.3",
+        "sandstone": "1.0.0-beta.3",
       },
       "devDependencies": {
-        "sandstone-cli": "^2.3.2",
+        "sandstone-cli": "2.3.2",
       },
     },
     "test": {
       "name": "sandstone-template-test",
       "dependencies": {
-        "sandstone": "^1.0.0-beta.3",
-        "sandstone-cli": "^2.3.2",
+        "sandstone": "1.0.0-beta.3",
+        "sandstone-cli": "2.3.2",
         "sandstone-template": "link:sandstone-template",
       },
       "devDependencies": {
