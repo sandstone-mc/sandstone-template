@@ -21,10 +21,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "sandstone-cli": "^2.4.0"
+    "sandstone-cli": "^2.4.1"
   },
   "dependencies": {
     "@types/bun": "^1.3.8",
-    "sandstone": "^1.0.0-beta.4"
+    "sandstone": "^1.0.0-beta.5"
   }
 }
