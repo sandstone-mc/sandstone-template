@@ -88,13 +88,12 @@ execute.as('@a').at('@s').run(() => {
 - `MCFunction('name', () => {...}, { runOnLoad: true })` - Runs on datapack load
 - `MCFunction('name', () => {...}, { runOnTick: true })` - Runs every tick
 - `{ lazy: true }` - Only creates file if called from another function
-- Async functions with `sleep()`: `MCFunction('name', async () => { sleep('1s') })`
 - Inline functions (JS functions) don't create files, commands are inlined
 
 **IMPORTANT: Synchronous Execution**
-Everything inside an MCFunction (including all Flow control like `_.if`, `_.while`, `_.forScore`) executes **synchronously within a single game tick**. Minecraft processes all commands instantly - there is no "waiting" between commands. The only way to delay execution across ticks is with `sleep()` in an async MCFunction:
+Everything inside an MCFunction (including all Flow control like `_.if`, `_.while`, `_.forScore`) executes **synchronously within a single game tick**. Minecraft processes all commands instantly - there is no "waiting" between commands. The only way to delay execution across ticks is with `sleep()` in an MCFunction:
 ```typescript
-MCFunction('delayed', async () => {
+MCFunction('delayed', () => {
   say('This runs immediately')
   sleep('1s')  // Waits 20 ticks (1 second)
   say('This runs 1 second later')
@@ -104,22 +103,21 @@ MCFunction('delayed', async () => {
 **Async Context**: By default, scheduled functions lose entity (`@s`) and position context because `schedule` runs from server context. Use `asyncContext: true` to preserve context:
 ```typescript
 // WITHOUT asyncContext - @s and position are LOST after sleep
-MCFunction('loses_context', async () => {
-  execute.as('@p').at('@s').run(async () => {
-    say('Player is @s here')
-    sleep('1s')
-    say('Now @s is GONE - runs as server!')
-  })
+const loses_context = MCFunction('loses_context', () => {
+  say('Player is @s here')
+  sleep('1s')
+  say('Now @s is GONE - runs as server!')
 })
+execute.as('@p').at('@s').run(() => loses_context())
 
 // WITH asyncContext - context is preserved
-MCFunction('keeps_context', async () => {
-  execute.as('@p').at('@s').run(async () => {
-    say('Player is @s here')
-    sleep('1s')
-    say('Still the same @s and position!')
-  })
+const keeps_context = MCFunction('keeps_context', () => {
+  say('Player is @s here')
+  sleep('1s')
+  say('Still the same @s and position!')
 }, { asyncContext: true })
+
+execute.as('@p').at('@s').run(() => keeps_context())
 ```
 Under the hood, `asyncContext` works by:
 1. Adding a **Label tag** to `@s` to mark entities waiting for this sleep
