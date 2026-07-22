@@ -17,6 +17,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "sandstone": "^1.1.0"
-  }
+    "sandstone": "^1.1.1"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
 }
