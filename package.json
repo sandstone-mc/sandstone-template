@@ -13,11 +13,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
-    "sandstone-cli": "^2.4.3",
+    "sandstone-cli": "^2.4.4",
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "sandstone": "^1.1.1"
+    "sandstone": "^1.1.2"
   },
   "trustedDependencies": [
     "@parcel/watcher"
