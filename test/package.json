@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "sandstone": "^1.1.0",
-    "sandstone-cli": "^2.4.3",
+    "sandstone-cli": "^2.5.0",
     "sandstone-template": "link:sandstone-template"
   },
   "devDependencies": {
