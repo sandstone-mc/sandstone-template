@@ -1,25 +1,25 @@
 {
   "name": "sandstone-template",
   "version": "0.0.1",
-  "description": "A pack created with Sandstone",
-  "type": "module",
+  "author": "",
   "module": "src/index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "sandstone-cli": "^2.5.2",
+    "typescript": "^6.0.3"
+  },
+  "description": "A pack created with Sandstone",
+  "keywords": [],
+  "license": "MIT",
   "scripts": {
     "dev:watch": "sand watch",
     "dev:build": "sand build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/bun": "latest",
-    "sandstone-cli": "^2.5.0",
-    "typescript": "^6.0.3"
-  },
-  "dependencies": {
-    "sandstone": "^1.1.5"
-  },
   "trustedDependencies": [
     "@parcel/watcher"
-  ]
+  ],
+  "type": "module",
+  "dependencies": {
+    "sandstone": "^1.1.6"
+  }
 }
