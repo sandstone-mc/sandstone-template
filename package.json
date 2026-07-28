@@ -13,7 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
-    "sandstone-cli": "^2.5.0",
+    "sandstone-cli": "^2.5.2",
     "typescript": "^6.0.3"
   },
   "dependencies": {
