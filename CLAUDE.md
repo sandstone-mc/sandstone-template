@@ -2,6 +2,15 @@
 
 Starter template for creating Minecraft datapacks and resource packs with [Sandstone](https://github.com/sandstone-mc/sandstone).
 
+## Notes
+
+- **Minecraft SNBT supports single-quoted strings** — `'foo'` is valid NBT and parses the same as `"foo"`. Single quotes have been supported in SNBT since 1.13. Don't "fix" generated output that uses single quotes; it's intentional (Sandstone's `JSONTextComponentClass.toString()` emits single-quoted JSON, which is valid NBT).
+
+### Cache & clean rebuilds
+
+- **Trust the CLI's cache.** If a file in `.sandstone/output/` isn't rewritten on a rebuild, that's intentional — Sandstone hashes the fully-visited-and-serialized resource data in-memory and compares it against the hash stored in `.sandstone/cache.json`. A stale-looking file means the generator produced the same bytes as the previous run, not that the build skipped it.
+- **To force a clean rebuild, delete the entire `.sandstone/` folder**, not just `.sandstone/output/`. The `.sandstone/cache.json` tracks resource state across builds; clearing only `output/` leaves stale cache entries that suppress regeneration.
+
 ## Commands
 
 ```bash
