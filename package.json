@@ -5,8 +5,7 @@
   "module": "src/index.ts",
   "devDependencies": {
     "@types/bun": "latest",
-    "sandstone-cli": "^2.5.4",
-    "typescript": "^6.0.3"
+    "sandstone-cli": "^2.5.6"
   },
   "description": "A pack created with Sandstone",
   "keywords": [],
@@ -20,6 +19,6 @@
   ],
   "type": "module",
   "dependencies": {
-    "sandstone": "^1.1.6"
+    "sandstone": "^1.1.7"
   }
 }
