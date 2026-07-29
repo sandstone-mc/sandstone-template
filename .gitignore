@@ -3,3 +3,4 @@ node_modules
 .sandstone
 test/resources/
 lib
+test/bun.lock
