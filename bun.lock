@@ -5,7 +5,7 @@
     "": {
       "name": "sandstone-template",
       "dependencies": {
-        "sandstone": "^1.2.8",
+        "sandstone": "^1.2.9",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -303,7 +303,7 @@
 
     "safer-buffer": ["safer-buffer@2.1.2", "", {}, "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="],
 
-    "sandstone": ["sandstone@1.2.8", "", { "dependencies": { "@smithed-mc/data-types": "^0.3.1", "@types/bun": "^1.3.14", "@types/nearley": "^2.11.5", "adm-zip": "^0.6.0", "binary-extensions": "^3.1.0", "fs-extra": "^11.3.6", "isbinaryfile": "^6.0.0", "lodash": "^4.18.1", "nearley": "^2.20.1", "prismarine-nbt": "^2.8.0" } }, "sha512-oOs7lIGcyl+GeXxxmApJHdFVsPuXgHNbh8C7ATYjI2JzRMaTSz2/y/xxz1dMQiBZ05urRCQ/JlgnJbEaFtYmNw=="],
+    "sandstone": ["sandstone@1.2.9", "", { "dependencies": { "@smithed-mc/data-types": "^0.3.1", "@types/bun": "^1.3.14", "@types/nearley": "^2.11.5", "adm-zip": "^0.6.0", "binary-extensions": "^3.1.0", "fs-extra": "^11.3.6", "isbinaryfile": "^6.0.0", "lodash": "^4.18.1", "nearley": "^2.20.1", "prismarine-nbt": "^2.8.0" } }, "sha512-te2RIOE/zfCRyrf8Jh5RpIR5yGgmvfRcu3Oz1DS0Qz/j+lx02O0kvX2Iox5ebpaqFwbXEnb9P8qxTJN6W4qntA=="],
 
     "sandstone-cli": ["sandstone-cli@2.5.9", "", { "dependencies": { "@inquirer/prompts": "^8.5.2", "@parcel/watcher": "^2.5.6", "@sandstone-mc/hot-hook": "^0.1.0", "adm-zip": "^0.6.0", "chalk": "^5.6.2", "chalk-template": "^1.1.2", "commander": "^15.0.0", "figlet": "^1.11.0", "fs-extra": "^11.3.5", "ink": "^7.1.1", "ink-spinner": "^5.0.0", "nanoid": "^6.0.0", "obliterator": "^2.0.5", "react": "^19.2.7", "semver": "^7.8.5", "source-map-js": "^1.2.1" }, "bin": { "sand": "lib/index.js", "create-sandstone": "lib/create.js" } }, "sha512-sNRjDrEbTQexbo7tevBkTvoGpftKFtEs0aqIoGDpG6CV4QFhH+6N7pkf6OTe5slRDZqJVsu10yhIpstIUiAIgQ=="],
 
