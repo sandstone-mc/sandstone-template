@@ -185,35 +185,40 @@ execute.as('@a').at('@s').run(() => {
 - `MCFunction('name', () => {...}, { runOnLoad: true })` - Runs on datapack load
 - `MCFunction('name', () => {...}, { runOnTick: true })` - Runs every tick
 - `{ lazy: true }` - Only creates file if called from another function
-- Async functions with `sleep()`: `MCFunction('name', async () => { await sleep('1s') })`
+- "Async" functions via `asyncContext: true` + `_.await.sleep()` / `_.await.until()`: `MCFunction('name', () => { _.await.sleep('1s') }, { asyncContext: true })`
 - Inline functions (JS functions) don't create files, commands are inlined
 
-**IMPORTANT: Synchronous Execution**
-Everything inside an MCFunction (including all Flow control like `_.if`, `_.while`, `_.forScore`) executes **synchronously within a single game tick**. Minecraft processes all commands instantly - there is no "waiting" between commands. The only way to delay execution across ticks is with `sleep()` in an async MCFunction:
+**IMPORTANT: "async" in Sandstone is fake async**
+
+Despite the `async` keyword in some docs, Sandstone does **not** use JS-level `async () => {...}` callbacks. Everything compiles synchronously — `MCFunction` bodies, `_.await.sleep(...)`, `_.await.until(...)`, and all Flow control run synchronously at compile time. The "async" semantics happen at **Minecraft runtime** via `schedule` (and tag/gametime polling for `asyncContext: true`).
+
+Always write sync callbacks. Do NOT use `async () => { await _.await.sleep(...) }` — the JS `async`/`await` keywords have no effect on Sandstone's compilation, and they will silently produce broken output because the continuation after a real JS `await` runs outside the MCFunction context.
+
+The compile-time call order matches what Minecraft will execute, tick by tick:
 ```typescript
-MCFunction('delayed', async () => {
-  say('This runs immediately')
-  await sleep('1s')  // Waits 20 ticks (1 second)
-  say('This runs 1 second later')
-})
+MCFunction('delayed', () => {
+  say('This runs in tick 0')
+  _.await.sleep('1s')  // Splits into a schedule for tick 20
+  say('This runs in tick 20 (in a new mcfunction)')
+}, { asyncContext: true })
 ```
 
 **Async Context**: By default, scheduled functions lose entity (`@s`) and position context because `schedule` runs from server context. Use `asyncContext: true` to preserve context:
 ```typescript
 // WITHOUT asyncContext - @s and position are LOST after sleep
-MCFunction('loses_context', async () => {
-  execute.as('@p').at('@s').run(async () => {
+MCFunction('loses_context', () => {
+  execute.as('@p').at('@s').run(() => {
     say('Player is @s here')
-    await sleep('1s')
+    _.await.sleep('1s')
     say('Now @s is GONE - runs as server!')
   })
 })
 
 // WITH asyncContext - context is preserved
-MCFunction('keeps_context', async () => {
-  execute.as('@p').at('@s').run(async () => {
+MCFunction('keeps_context', () => {
+  execute.as('@p').at('@s').run(() => {
     say('Player is @s here')
-    await sleep('1s')
+    _.await.sleep('1s')
     say('Still the same @s and position!')
   })
 }, { asyncContext: true })
