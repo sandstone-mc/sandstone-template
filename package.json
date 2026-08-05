@@ -20,6 +20,6 @@
   ],
   "type": "module",
   "dependencies": {
-    "sandstone": "^1.1.15"
+    "sandstone": "^1.1.16"
   }
 }
