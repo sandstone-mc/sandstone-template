@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
-    "sandstone-cli": "^2.5.13"
+    "sandstone-cli": "^2.6.0"
   },
   "dependencies": {
     "sandstone": "^1.0.13"
