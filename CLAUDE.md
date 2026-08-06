@@ -139,7 +139,7 @@ This elegantly handles multiple entities sleeping simultaneously - each wakes up
 ### Macros & MCFunction Parameters
 [docs/features/macros.md](https://github.com/sandstone-mc/sandstone-documentation/blob/master/docs/features/macros.md)
 
-Macros allow runtime value substitution in commands using `$(variable)` syntax. Sandstone provides first-class macro support through MCFunction parameters and environment variables.
+**Mental model** — `$(name)` is Minecraft's runtime substitution, not JS async. Sandstone compiles `$.give(name, 'diamond', {}, count)` into a command with literal `$(env_0)` / `$(param_0)` tokens, plus emits the dispatch `function <name> with storage <envPath>` at the call site. MC copies storage values into the slots when invoking the mcfunction. The mcfunction file is the same regardless of how many times it's called.
 
 ```typescript
 const $ = Macro // common alias
@@ -161,10 +161,34 @@ MCFunction('foo', () => {
 })
 ```
 
+**You must invoke the thunk to emit the body.** `MCFunction('macro_flow', [x], () => { ... })` creates the function, but the body (`{...}`) only runs when the thunk is called. Without the trailing `()`, visitors see an empty mcfunction and the macro body never serializes:
+```typescript
+MCFunction('macro_flow', [x], () => {
+  $.give(...)
+})()   // ← call the thunk to actually emit the body
+```
+
 #### Environment Variables vs Parameters
 - **Environment variables**: Array as second MCFunction argument `[name]` - cannot be overridden at call time
 - **Parameters**: Declared in callback after `_loop`: `(_loop, count: Score)` - passed at call time
 - **Usage**: Reference the actual variables in `Macro` commands, not string placeholders
+
+#### `_.with()` — wrap a callback in a macro mcfunction
+`_.with([env], cb)` is the convenience form. It lifts `cb`'s body into a child mcfunction (`<parent>/__with_macro`) with each env var registered as `env_N`. Generated output:
+```mcfunction
+# parent.mcfunction
+data modify storage __sandstone:variable foo.env_0 set value 20d
+function test:parent/__with_macro with storage __sandstone:variable foo
+
+# parent/__with_macro.mcfunction
+$give @s minecraft:diamond 1 $(env_0)
+```
+The two nesting patterns produce equivalent output — order of `_.with` vs `execute.as/at` doesn't matter:
+```typescript
+_.with([volume], () => execute.as('@a').at('@s').run(() => $.playsound(...)))
+execute.as('@a').at('@s').run(() => _.with([volume], () => $.playsound(...)))
+// both → execute as @a at @s run function <__with_macro>; __with_macro has $playsound ... $(env_0)
+```
 
 #### Macro Template Literals
 Use `Macro` tagged template for dynamic paths:
@@ -177,6 +201,13 @@ const test = MCFunction('get_thing', (_loop, index: Score) => {
   $.data.storage.modify(thing).set.from.storage(thingMap.currentTarget, $`Things[${index}]`)
 })
 ```
+
+#### Template literals with DataPoints — DON'T
+```typescript
+say(`got ${entry}`)                       // ❌ serializes as `say got [object Object]`
+tellraw('@a', ['got', entry])             // ✅ proper SNBT element-wise serialization
+```
+DataPoints don't auto-coerce to SNBT inside JS template strings. Use tellraw with an array (or build the `JSONTextComponent` explicitly).
 
 #### Important Limitations
 - MCFunctions with macro variables **must** be called at compile-time to register macro names
