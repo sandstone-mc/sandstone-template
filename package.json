@@ -22,7 +22,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "sandstone-cli": "^2.6.2",
+    "sandstone-cli": "^2.6.3",
     "typescript": "^7.0.2"
   },
   "dependencies": {
