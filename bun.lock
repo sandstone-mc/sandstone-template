@@ -9,7 +9,7 @@
       },
       "devDependencies": {
         "@types/bun": "latest",
-        "sandstone-cli": "^2.6.4",
+        "sandstone-cli": "^2.6.5",
       },
     },
   },
