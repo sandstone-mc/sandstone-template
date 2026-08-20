@@ -17,7 +17,7 @@
     "sandstone-cli": "^2.6.5"
   },
   "dependencies": {
-    "sandstone": "^1.0.18"
+    "sandstone": "~1.0.18"
   },
   "trustedDependencies": [
     "@parcel/watcher"
