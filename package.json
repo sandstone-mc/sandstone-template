@@ -22,12 +22,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "sandstone-cli": "^2.6.4",
+    "sandstone-cli": "^2.6.5",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "@types/bun": "^1.3.8",
-    "sandstone": "^1.2.22"
+    "sandstone": "^1.2.23"
   },
   "trustedDependencies": [
     "@parcel/watcher"
