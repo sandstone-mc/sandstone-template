@@ -3,3 +3,7 @@ node_modules
 .sandstone
 resources/cache
 .temp
+
+.temp/
+# Symlink to ../sandstone/patches/ for bun link workaround
+/patches
