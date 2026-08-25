@@ -4,3 +4,6 @@ node_modules
 test/resources/
 lib
 test/bun.lock
+.temp/
+# Symlink to ../sandstone/patches/ for bun link workaround
+/patches
