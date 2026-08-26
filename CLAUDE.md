@@ -15,8 +15,11 @@ Starter template for creating Minecraft datapacks and resource packs with [Sands
 
 ```bash
 bun dev:build    # Build the pack (outputs to `.sandstone/output/`)
+bun dev:build --debug  # Same, but mirror console output to `.sandstone/build-debug.log` (overwritten each run) for targeted inspection
 bun dev:watch    # Watch mode - rebuilds on file changes, run this in a background shell and read from `.sandstone/watch.log` rather than your own background shell log
 ```
+
+**Build logging — keep noise out of your context window.** Always pipe routine builds to `/dev/null`: `bun dev:build > /dev/null 2>&1`. Piping the stdout into a blackhole prevents it from filling your context window, all of the logging goes to the file, do not attempt to do any other piping or the harness will ask the user for permissions all the time. Only use `--debug` (followed by `grep` on `.sandstone/build-debug.log`) when you're actually investigating something specific — don't `cat` the whole file, the log is meant to be searched.
 
 ## Project Structure
 
