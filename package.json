@@ -14,10 +14,10 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
-    "sandstone-cli": "link:sandstone-cli"
+    "sandstone-cli": "^2.6.8"
   },
   "dependencies": {
-    "sandstone": "link:sandstone"
+    "sandstone": "~1.2.23"
   },
   "trustedDependencies": [
     "@parcel/watcher"
