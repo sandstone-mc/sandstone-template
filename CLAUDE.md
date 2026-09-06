@@ -6,6 +6,36 @@ Starter template for creating Minecraft datapacks and resource packs with [Sands
 
 - **Minecraft SNBT supports single-quoted strings** — `'foo'` is valid NBT and parses the same as `"foo"`. Single quotes have been supported in SNBT since 1.13. Don't "fix" generated output that uses single quotes; it's intentional (Sandstone's `JSONTextComponentClass.toString()` emits single-quoted JSON, which is valid NBT).
 
+### Commands must be generated inside an `MCFunction` context
+
+Anything that produces Minecraft commands — `say(...)`, `execute...`, `_.if(...)`, `_.while(...)`, `_.forScore(...)`, `_.switch(...)`, `Objective.create(...)`, `Selector(...)`, etc. — pushes onto the active MCFunction's context stack when it's called. If there's no MCFunction on the stack (i.e. you called the code at the top level of a module, outside any `MCFunction(...)` body or callback), the command has nowhere to go and the build will fail or produce broken output.
+
+**Rule:** any code that may emit commands must only run *inside* an `MCFunction` body, or *inside a JS function/callback that itself only runs from an MCFunction body*. Never call command-producing APIs at the top level of a `.ts` file:
+
+```ts
+// ❌ BAD — `say` runs at module top level, no MCFunction context
+import { say, MCFunction } from 'sandstone'
+say('hi')                     // throws / broken output
+MCFunction('hello', () => {
+  say('hi')                   // fine
+})
+
+// ✅ GOOD — define helper functions that take commands indirectly,
+//    then call the helpers from inside MCFunction bodies.
+import { _, MCFunction, say } from 'sandstone'
+
+const checkReady = () => {
+  _.if(_.entity('@s[tag=ready]')).return()
+  say('not ready')
+}
+
+MCFunction('tick', checkReady) // callback is run inside the MCFunction
+```
+
+The same applies to flow callbacks: `_.if(cond, cb)` is fine because `cb` runs inside the `_.if` body, which is itself created from inside an MCFunction. The point is that the call chain always bottoms out in an `MCFunction(...)` body so the context stack has somewhere to anchor.
+
+Imports of command-producing APIs at the top level are fine — only the *call* has to happen inside an MCFunction.
+
 ### Cache & clean rebuilds
 
 - **Trust the CLI's cache.** If a file in `.sandstone/output/` isn't rewritten on a rebuild, that's intentional — Sandstone hashes the fully-visited-and-serialized resource data in-memory and compares it against the hash stored in `.sandstone/cache.json`. A stale-looking file means the generator produced the same bytes as the previous run, not that the build skipped it.
