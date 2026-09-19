@@ -5,11 +5,11 @@ export default {
   packs: {
     datapack: {
       description: [ 'A ', { text: 'Sandstone', color: 'gold' }, ' datapack.' ],
-      packFormat: 107,
+      packFormat: 121,
     } as DatapackConfig,
     resourcepack: {
       description: [ 'A ', { text: 'Sandstone', color: 'gold' }, ' resource pack.' ],
-      packFormat: 88,
+      packFormat: 97,
     } as ResourcePackConfig
   },
   onConflict: {
