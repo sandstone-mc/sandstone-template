@@ -1,16 +1,16 @@
-import type { DatapackConfig, ResourcePackConfig, SandstoneConfig } from 'sandstone'
+import type { SandstoneConfig } from 'sandstone'
 
 export default {
   name: 'template',
   packs: {
     datapack: {
       description: [ 'A ', { text: 'Sandstone', color: 'gold' }, ' datapack.' ],
-      packFormat: 107,
-    } as DatapackConfig,
+      packFormat: 121,
+    },
     resourcepack: {
       description: [ 'A ', { text: 'Sandstone', color: 'gold' }, ' resource pack.' ],
-      packFormat: 88,
-    } as ResourcePackConfig
+      packFormat: 97,
+    },
   },
   onConflict: {
     default: 'warn',
